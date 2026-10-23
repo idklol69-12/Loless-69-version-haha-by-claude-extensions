@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Loless 69</title>
+  
+  <style>
+    :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+    --bg:#f4f1ea;--card:#fff;--ink:#1d1b16;--mut:#6b665a;--lt:#efd9b0;--dk:#b58863;--sel:#f6e05e;--mv:#5aa469;--acc:#3b6ea8;--bd:#d9d3c4}
+    @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#16151a;--card:#222129;--ink:#eeeae0;--mut:#9a95a6;--bd:#37353f;--acc:#6aa0de}}
+    html{scroll-padding-top:env(safe-area-inset-top,0px)}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.4}
+    .wrap{max-width:980px;margin:0 auto;padding:16px}
+    h1{margin:0;font-size:1.8rem}
+    .sub{color:var(--mut);margin:2px 0 12px}
+    .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+    button{font:inherit;padding:7px 14px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--ink);cursor:pointer}
+    button.p{background:var(--acc);color:#fff;border-color:var(--acc)}
+    button.on{outline:2px solid var(--acc)}
+    .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+    @media(min-width:820px){.grid{grid-template-columns:minmax(0,480px) minmax(0,1fr)}}
+    .card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px}
+    .card h2{margin:0 0 8px;font-size:1.05rem}
+    #board{display:grid;grid-template-columns:repeat(8,1fr);width:100%;max-width:480px;aspect-ratio:8/10;border:3px solid var(--ink);border-radius:6px;overflow:hidden}
+    .sq{display:flex;align-items:center;justify-content:center;position:relative;font-size:min(8vw,2.6rem);cursor:pointer;user-select:none;line-height:1}
+    .sq.l{background:var(--lt)}.sq.d{background:var(--dk)}
+    .sq.sel{background:var(--sel)}
+    .sq.mv::after{content:"";position:absolute;width:28%;height:28%;border-radius:50%;background:var(--mv);opacity:.8}
+    .sq.mv.cap::after{width:88%;height:88%;background:none;border:4px solid var(--mv)}
+    .w{color:#fff;text-shadow:0 0 2px #000,0 0 2px #000,0 0 3px #000}.b{color:#111;text-shadow:0 0 1px #fff}
+    .sq i{position:absolute;right:3px;bottom:1px;font:700 .55rem system-ui;color:#fff;background:var(--acc);border-radius:3px;padding:0 3px}
+    #status{font-weight:600;margin:8px 0}
+    .lv{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .lv button{font-size:.8rem;padding:5px 8px;text-align:center}
+    .mut{color:var(--mut);font-size:.9rem}
+    #hist{max-height:200px;overflow:auto;font-size:.9rem;margin:0;padding-left:20px}
+    input{font:inherit;padding:7px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--ink);width:100%;margin:4px 0}
+    #modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:5}
+    #modal .card{width:100%;max-width:340px;margin:0}
+  </style>
+
+  <script src="game.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <h1>Loless 69 😂</h1>
+  <p class="sub">Chess rules + Loless pieces</p>
+  <div class="bar">
+    <span class="mut" id="who">Offline Mode Enabled</span>
+    <button id="bReset" style="margin-left:auto">Reset Game</button>
+  </div>
+  <div class="grid">
+    <div>
+      <div id="board"></div>
+      <div id="status"></div>
+      <p class="mut">White moves first. Capture the enemy king to win.<br>Normal chess pieces use normal chess movement.<br>Pawns promote to a queen. The extra L pieces (the “L” row in front of the pawns) use the Loless rule: 1 square forward OR 1 square to the right.</p>
+    </div>
+    <div>
+      <div class="card"><h2>🤖 Bot</h2>
+        <button id="bBot">Play vs Bot</button>
+        <p class="mut" id="botTxt">Bot is off. You are playing with the normal Loless turn system.</p>
+        <h2 style="margin-top:12px">🧠 Bot’s Loless 69 Smartness</h2>
+        <div id="botLv"><b>1200 — Pro</b></div>
+        <div class="lv" id="lvs"></div>
+        <p style="margin:10px 0 0">Your Loless 69 Smartness: <b id="mine"></b></p>
+      </div>
+      <div class="card"><h2>🎥 Recording / Move History</h2>
+        <ol id="hist"></ol><div id="noMoves" class="mut">No moves yet.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
